@@ -46,7 +46,7 @@ And you're good to go!
 
 `copytext` can work with both **key/value** and **table** layouts. By default, it assumes you're passing it **key/value** sheets.
 
-*Note: With **key/value** sheets, the processor will only care about content in the first **three** columns. Anything else will be ignored. (Meaning the other columns are a great place to leave notes!)*
+_Note: With **key/value** sheets, the processor will only care about content in the first **three** columns. Anything else will be ignored. (Meaning the other columns are a great place to leave notes!)_
 
 **corgis_keyvalue.xlsx**  
 *Sheet name: CORGIS*
