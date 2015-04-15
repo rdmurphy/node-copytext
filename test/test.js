@@ -31,9 +31,8 @@ multiKeyValue.SHIBA = {
 
 describe('file loading methods', function() {
   it('should load as a Buffer', function() {
-    fs.readFile('./test/files/basic_keyvalue.xlsx', 'utf8', function(err, file) {
-      assert.deepEqual(copytext(file), basicKeyValue);
-    });
+    var file = fs.readFileSync('./test/files/basic_keyvalue.xlsx');
+    assert.deepEqual(copytext(file), basicKeyValue);
   });
 
   it('should open the file via path', function() {
