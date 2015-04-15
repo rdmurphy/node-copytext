@@ -6,7 +6,7 @@ A node library for accessing a XLSX spreadsheet as a JavaScript object. (Markdow
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Usage](#usage)
-* [In Practice](#inpractice)
+* [In Practice](#in-practice)
 * [Tests](#tests)
 * [License](#license)
 
