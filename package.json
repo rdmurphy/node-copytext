@@ -1,12 +1,12 @@
 {
   "name": "copytext",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A module for accessing a XLSX spreadsheet as a JavaScript object. (Markdown batteries included.)",
   "main": "index.js",
   "files": [
     "index.js",
     "process.js",
-    "./processors/*"
+    "processors"
   ],
   "scripts": {
     "test": "mocha"
