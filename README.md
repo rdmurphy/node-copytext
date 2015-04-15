@@ -51,10 +51,10 @@ And you're good to go!
 **corgis_keyvalue.xlsx**  
 *Sheet name: CORGIS*
 
-- | -
-- | -
-**name**  | Poky
-**instagram_account**  | https://instagram.com/poky_corgi/
+- | - 
+----- | -----
+**name** | Poky
+**instagram_account** | https://instagram.com/poky_corgi/
 
 ```js
 var copytext = require('copytext');
@@ -77,7 +77,7 @@ To tell `copytext` to use the **table** parser instead (known as `objectlist`), 
 *Sheet name: CORGIS*
 
 name | instagram_account
-- | -
+----- | -----
 Poky | https://instagram.com/poky_corgi/
 Tibby | https://instagram.com/tibbythecorgi/
 
@@ -108,7 +108,7 @@ Assume we have the previous example's `CORGIS` sheet in a spreadsheet plus this 
 *Sheet name: SHIBA*
 
 - | -
-- | -
+----- | -----
 **name** | Maru
 **instagram_account** | https://instagram.com/marutaro/
 
@@ -156,7 +156,7 @@ var data = copytext('./husky_keyvalue_corgis_objectlist.xlsx', {
 In **key/value** sheets, you tell `copytext` to process the value cell (in column B) as Markdown by putting `md` or `markdown` in the cell next to it in column C.
 
 - | - | -
-- | - | -
+----- | ----- | -----
 **name**  | Poky |
 **instagram_account**  | https://instagram.com/poky_corgi/ |
 **bio** | Pembroke Welsh Corgi living in northern \[Ontario, Canada](https://en.wikipedia.org/wiki/Ontario). | markdown
@@ -164,7 +164,7 @@ In **key/value** sheets, you tell `copytext` to process the value cell (in colum
 In **table**/**objectlist** sheets, the hint is passed in the header row of the table. By adding `_md` to the end of a column's header label, `copytext` will know to treat everything in that column as Markdown.
 
 name | instagram_account | bio_md
-- | -
+----- | ----- | -----
 Poky | https://instagram.com/poky_corgi/ | Pembroke Welsh Corgi living in northern \[Ontario, Canada](https://en.wikipedia.org/wiki/Ontario).
 Tibby | https://instagram.com/tibbythecorgi/ | Half lion, half corgi. A pinch of bunny.
 
