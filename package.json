@@ -1,0 +1,39 @@
+{
+  "name": "copytext",
+  "version": "1.0.0",
+  "description": "A module for accessing a XLSX spreadsheet as a JavaScript object. (Markdown batteries included.)",
+  "files": [
+    "index.js",
+    "process.js",
+    "./processors/"
+  ],
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rdmurphy/node-copytext"
+  },
+  "keywords": [
+    "json",
+    "xlsx",
+    "excel",
+    "templates"
+  ],
+  "author": "Ryan Murphy <ryan@rdmurphy.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rdmurphy/node-copytext/issues"
+  },
+  "homepage": "https://github.com/rdmurphy/node-copytext",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "marked": "^0.3.3",
+    "xlsx": "^0.8.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.4"
+  }
+}
