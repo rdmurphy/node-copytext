@@ -5,6 +5,7 @@ A node library for accessing a XLSX spreadsheet as a JavaScript object. (Markdow
 * [Features](#features)
 * [Requirements](#requirements)
 * [Installation](#installation)
+* [Build Tools](#build-tools)
 * [Usage](#usage)
 * [In Practice](#in-practice)
 * [Tests](#tests)
@@ -40,6 +41,14 @@ npm test # make sure everything already works!
 ```
 
 And you're good to go!
+
+## Build Tools
+
+Tool | Method
+-----|-------
+[Grunt](http://gruntjs.com/) | https://github.com/rdmurphy/grunt-copytext
+[Gulp](http://gulpjs.com/) | Use `copytext` directly
+
 ## Usage
 
 ### The Basics
@@ -51,7 +60,7 @@ _Note: With **key/value** sheets, the processor will only care about content in 
 **corgis_keyvalue.xlsx**  
 *Sheet name: CORGIS*
 
-- | - 
+- | -
 ----- | -----
 **name** | Poky
 **instagram_account** | https://instagram.com/poky_corgi/
