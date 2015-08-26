@@ -1,4 +1,4 @@
-# node-copytext [![Build Status](https://travis-ci.org/rdmurphy/node-copytext.svg?branch=master)](https://travis-ci.org/rdmurphy/node-copytext)
+# node-copytext [![Build Status](https://travis-ci.org/rdmurphy/node-copytext.svg?branch=master)](https://travis-ci.org/rdmurphy/node-copytext) [![Dependency Status](https://david-dm.org/rdmurphy/node-copytext.svg)](https://david-dm.org/rdmurphy/node-copytext)
 
 A node library for accessing a XLSX spreadsheet as a JavaScript object. (Markdown batteries included!) Inspired by the NPR visuals team's [copytext](https://github.com/nprapps/copytext) library for Python. Works great coupled with group-edited Google Spreadsheet exported as a XLSX file.
 
