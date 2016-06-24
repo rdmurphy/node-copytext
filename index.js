@@ -1,7 +1,7 @@
 'use strict'
 
 const keyvalue = require('./processors/keyvalue')
-const objectlist = require('./processors/objectlist')
+const table = require('./processors/table')
 const XLSX = require('xlsx')
 
 /**
@@ -12,18 +12,7 @@ const XLSX = require('xlsx')
  */
 const processors = {
   keyvalue,
-  objectlist
-}
-
-/**
- * Accepts a name and function and makes it available to `copytext` for XLSX
- * processing.
- *
- * @param {String} name
- * @param {Function} fn
- */
-function addProcessor (name, fn) {
-  processors[name] = fn
+  table
 }
 
 /**
@@ -51,8 +40,8 @@ function process (rawXLSX, options) {
   // if no options are passed, set an empty Object as default
   options = options || {}
 
-  // if no basetype is set, assume `keyvalue`
-  const basetype = options.basetype || 'keyvalue'
+  // if no processor is set, assume `keyvalue`
+  const defaultProcessor = options.processor || 'keyvalue'
 
   // if no overrides were set, assume there are none
   const overrides = options.overrides || {}
@@ -69,7 +58,7 @@ function process (rawXLSX, options) {
   // for each sheet in the workbook process its contents
   sheets.forEach(function (sheet) {
     // determine the appropriate processor, using the override if it exists
-    const processor = overrides.hasOwnProperty(sheet) ? overrides[sheet] : basetype
+    const processor = overrides.hasOwnProperty(sheet) ? overrides[sheet] : defaultProcessor
 
     // pass pass the sheet on to the process script with the correct processor
     payload[sheet] = getProcessor(processor)(workbook.Sheets[sheet])
@@ -80,6 +69,5 @@ function process (rawXLSX, options) {
 }
 
 module.exports = {
-  process,
-  addProcessor
+  process
 }

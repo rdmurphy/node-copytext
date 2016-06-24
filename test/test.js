@@ -41,8 +41,8 @@ describe('reading XLSX key value sheets', function () {
     assert.deepEqual(copytext.process('./test/files/basic_keyvalue.xlsx'), basicKeyValue)
   })
 
-  it('should load a key value sheet with `keyvalue` basetype set', function () {
-    assert.deepEqual(copytext.process('./test/files/basic_keyvalue.xlsx', {basetype: 'keyvalue'}), basicKeyValue)
+  it('should load a key value sheet with `keyvalue` processor set', function () {
+    assert.deepEqual(copytext.process('./test/files/basic_keyvalue.xlsx', {processor: 'keyvalue'}), basicKeyValue)
   })
 
   it('should load a key value sheet with empty overrides set', function () {
@@ -58,7 +58,7 @@ describe('reading XLSX key value sheets', function () {
   })
 })
 
-const basicObjectList = {
+const basicTable = {
   CORGI: [
     {
       'name': 'Winston',
@@ -73,67 +73,67 @@ const basicObjectList = {
   ]
 }
 
-const basicObjectListBio = copyObj(basicObjectList)
-basicObjectListBio.CORGI[0].bio_md = 'Two-year-old Pembroke Welsh Corgi living in Los Angeles, CA.'
-basicObjectListBio.CORGI[1].bio_md = 'Half lion, half corgi. A pinch of bunny.'
-basicObjectListBio.CORGI[2].bio_md = 'Pembroke Welsh Corgi living in northern Ontario, Canada.'
+const basicTableBio = copyObj(basicTable)
+basicTableBio.CORGI[0].bio_md = 'Two-year-old Pembroke Welsh Corgi living in Los Angeles, CA.'
+basicTableBio.CORGI[1].bio_md = 'Half lion, half corgi. A pinch of bunny.'
+basicTableBio.CORGI[2].bio_md = 'Pembroke Welsh Corgi living in northern Ontario, Canada.'
 
-const basicObjectListEmptyCell = copyObj(basicObjectListBio)
-delete basicObjectListEmptyCell.CORGI[0].bio_md
+const basicTableEmptyCell = copyObj(basicTableBio)
+delete basicTableEmptyCell.CORGI[0].bio_md
 
-const multiObjectList = copyObj(basicObjectListBio)
-multiObjectList.SHIBA = [{
+const multiTable = copyObj(basicTableBio)
+multiTable.SHIBA = [{
   'name': 'Maru',
   'instagram_account': 'https://instagram.com/marutaro/',
   'bio_md': 'My name is Maru. Breed of shiba.'
 }]
 
-describe('reading XLSX object list sheets', function () {
-  it('should load a single object list sheet with `objectlist` basetype set', function () {
-    assert.deepEqual(copytext.process('./test/files/basic_objectlist.xlsx', {basetype: 'objectlist'}), basicObjectList)
+describe('reading XLSX table sheets', function () {
+  it('should load a single table sheet with `table` processor set', function () {
+    assert.deepEqual(copytext.process('./test/files/basic_table.xlsx', {processor: 'table'}), basicTable)
   })
 
-  it('should load a single object value sheet with an `objectlist` set', function () {
-    assert.deepEqual(copytext.process('./test/files/basic_objectlist.xlsx', {
-      basetype: 'keyvalue',
+  it('should load a single object value sheet with a `table` set', function () {
+    assert.deepEqual(copytext.process('./test/files/basic_table.xlsx', {
+      processor: 'keyvalue',
       overrides: {
-        CORGI: 'objectlist'
+        CORGI: 'table'
       }
-    }), basicObjectList)
+    }), basicTable)
   })
 
   it('should gracefully handle an empty cell', function () {
-    assert.deepEqual(copytext.process('./test/files/basic_objectlist_emptycell.xlsx', {basetype: 'objectlist'}), basicObjectListEmptyCell)
+    assert.deepEqual(copytext.process('./test/files/basic_table_emptycell.xlsx', {processor: 'table'}), basicTableEmptyCell)
   })
 
-  it('should read multiple object list sheets', function () {
-    assert.deepEqual(copytext.process('./test/files/multi_objectlist.xlsx', {basetype: 'objectlist'}), multiObjectList)
+  it('should read multiple table sheets', function () {
+    assert.deepEqual(copytext.process('./test/files/multi_table.xlsx', {processor: 'table'}), multiTable)
   })
 })
 
-const mixedKeyValueObjectList = copyObj(basicObjectListBio)
-mixedKeyValueObjectList.SHIBA = {
+const mixedKeyValueTable = copyObj(basicTableBio)
+mixedKeyValueTable.SHIBA = {
   'name': 'Maru',
   'instagram_account': 'https://instagram.com/marutaro/',
   'bio': 'My name is Maru. Breed of shiba.'
 }
 
-describe('reading mixed key value/object list sheets', function () {
-  it('should read a mixed key value/object list file with basetype set to `keyvalue`, with an override for `objectlist`', function () {
-    assert.deepEqual(copytext.process('./test/files/mixed_keyvalue_objectlist.xlsx', {
-      basetype: 'keyvalue',
+describe('reading mixed key value/table sheets', function () {
+  it('should read a mixed key value/table file with processor set to `keyvalue`, with an override for `table`', function () {
+    assert.deepEqual(copytext.process('./test/files/mixed_keyvalue_table.xlsx', {
+      processor: 'keyvalue',
       overrides: {
-        CORGI: 'objectlist'
+        CORGI: 'table'
       }
-    }), mixedKeyValueObjectList)
+    }), mixedKeyValueTable)
   })
 
-  it('should read a mixed key value/object list file with basetype set to `objectlist`, with an override for `keyvalue`', function () {
-    assert.deepEqual(copytext.process('./test/files/mixed_keyvalue_objectlist.xlsx', {
-      basetype: 'objectlist',
+  it('should read a mixed key value/table file with processor set to `table`, with an override for `keyvalue`', function () {
+    assert.deepEqual(copytext.process('./test/files/mixed_keyvalue_table.xlsx', {
+      processor: 'table',
       overrides: {
         SHIBA: 'keyvalue'
       }
-    }), mixedKeyValueObjectList)
+    }), mixedKeyValueTable)
   })
 })

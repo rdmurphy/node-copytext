@@ -5,6 +5,7 @@
  * the value in first column, and each value representing the value in the
  * second column.
  *
+ * @private
  * @param  {Object} worksheet
  * @return {Object}
  */

@@ -9,6 +9,7 @@
     "processors"
   ],
   "scripts": {
+    "docs:build": "documentation readme --readme-file README.md --section 'API Docs' ./index.js && doctoc --github README.md",
     "test": "standard && mocha"
   },
   "repository": {
@@ -34,6 +35,8 @@
     "xlsx": "^0.8.0"
   },
   "devDependencies": {
+    "doctoc": "^1.2.0",
+    "documentation": "^4.0.0-beta5",
     "mocha": "^2.2.5",
     "standard": "^7.1.2"
   }
