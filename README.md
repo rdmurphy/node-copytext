@@ -67,7 +67,7 @@ _Note: With **key/value** sheets, the processor will only care about content in 
 ```js
 var copytext = require('copytext');
 
-var data = copytext('./corgis_keyvalue.xlsx');
+var data = copytext.process('./corgis_keyvalue.xlsx');
 
 console.log(data);
 
@@ -92,7 +92,7 @@ Tibby | https://instagram.com/tibbythecorgi/
 ```js
 var copytext = require('copytext');
 
-var data = copytext('./corgis_objectlist.xlsx', {
+var data = copytext.process('./corgis_objectlist.xlsx', {
   'basetype': 'objectlist'
 });
 
@@ -123,7 +123,7 @@ Assume we have the previous example's `CORGIS` sheet in a spreadsheet plus this 
 ```js
 var copytext = require('copytext');
 
-var data = copytext('./husky_keyvalue_corgis_objectlist.xlsx', {
+var data = copytext.process('./husky_keyvalue_corgis_objectlist.xlsx', {
   'basetype': 'objectlist',
   'overrides': {
     'SHIBA': 'keyvalue'
@@ -151,7 +151,7 @@ console.log(data);
 The override works in both directions - this would have produced the same result:
 
 ```js
-var data = copytext('./husky_keyvalue_corgis_objectlist.xlsx', {
+var data = copytext.process('./husky_keyvalue_corgis_objectlist.xlsx', {
   'basetype': 'keyvalue',
   'overrides': {
     'CORGIS': 'objectlist'
@@ -168,7 +168,7 @@ var fs = require('fs');
 var copytext = require('copytext');
 var nunjucks = require('nunjucks');
 
-var data = copytext('./data/contacts.xlsx');  // a key/value sheet named CONTACTS
+var data = copytext.process('./data/contacts.xlsx');  // a key/value sheet named CONTACTS
 var res = nunjucks.render('index.html', {DATA: data});
 ```
 
