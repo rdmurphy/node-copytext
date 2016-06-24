@@ -17,9 +17,6 @@ var basicKeyValue = {
   }
 }
 
-var basicKeyValueMD = copyObj(basicKeyValue)
-basicKeyValueMD.CORGI.bio = '<p>Two-year-old Pembroke Welsh Corgi living in Los Angeles, CA.</p>\n'
-
 var basicKeyValueEmptyCell = copyObj(basicKeyValue)
 basicKeyValueEmptyCell.CORGI.instagram_account = ''
 
@@ -53,10 +50,6 @@ describe('reading XLSX key value sheets', function () {
     assert.deepEqual(copytext('./test/files/basic_keyvalue.xlsx', {overrides: {}}), basicKeyValue)
   })
 
-  it('should load a key value sheet with a markdown cell', function () {
-    assert.deepEqual(copytext('./test/files/basic_keyvalue_md.xlsx'), basicKeyValueMD)
-  })
-
   it('should gracefully handle an empty value cell', function () {
     assert.deepEqual(copytext('./test/files/basic_keyvalue_emptycell.xlsx'), basicKeyValueEmptyCell)
   })
@@ -81,19 +74,19 @@ var basicObjectList = {
   ]
 }
 
-var basicObjectListMD = copyObj(basicObjectList)
-basicObjectListMD.CORGI[0].bio_md = '<p>Two-year-old Pembroke Welsh Corgi living in Los Angeles, CA.</p>\n'
-basicObjectListMD.CORGI[1].bio_md = '<p>Half lion, half corgi. A pinch of bunny.</p>\n'
-basicObjectListMD.CORGI[2].bio_md = '<p>Pembroke Welsh Corgi living in northern Ontario, Canada.</p>\n'
+var basicObjectListBio = copyObj(basicObjectList)
+basicObjectListBio.CORGI[0].bio_md = 'Two-year-old Pembroke Welsh Corgi living in Los Angeles, CA.'
+basicObjectListBio.CORGI[1].bio_md = 'Half lion, half corgi. A pinch of bunny.'
+basicObjectListBio.CORGI[2].bio_md = 'Pembroke Welsh Corgi living in northern Ontario, Canada.'
 
-var basicObjectListEmptyCell = copyObj(basicObjectListMD)
+var basicObjectListEmptyCell = copyObj(basicObjectListBio)
 delete basicObjectListEmptyCell.CORGI[0].bio_md
 
-var multiObjectList = copyObj(basicObjectListMD)
+var multiObjectList = copyObj(basicObjectListBio)
 multiObjectList.SHIBA = [{
   'name': 'Maru',
   'instagram_account': 'https://instagram.com/marutaro/',
-  'bio_md': '<p>My name is Maru. Breed of shiba.</p>\n'
+  'bio_md': 'My name is Maru. Breed of shiba.'
 }]
 
 describe('reading XLSX object list sheets', function () {
@@ -110,10 +103,6 @@ describe('reading XLSX object list sheets', function () {
     }), basicObjectList)
   })
 
-  it('should load an object list sheet with a markdown column', function () {
-    assert.deepEqual(copytext('./test/files/basic_objectlist_md.xlsx', {basetype: 'objectlist'}), basicObjectListMD)
-  })
-
   it('should gracefully handle an empty cell', function () {
     assert.deepEqual(copytext('./test/files/basic_objectlist_emptycell.xlsx', {basetype: 'objectlist'}), basicObjectListEmptyCell)
   })
@@ -123,11 +112,11 @@ describe('reading XLSX object list sheets', function () {
   })
 })
 
-var mixedKeyValueObjectList = copyObj(basicObjectListMD)
+var mixedKeyValueObjectList = copyObj(basicObjectListBio)
 mixedKeyValueObjectList.SHIBA = {
   'name': 'Maru',
   'instagram_account': 'https://instagram.com/marutaro/',
-  'bio': '<p>My name is Maru. Breed of shiba.</p>\n'
+  'bio': 'My name is Maru. Breed of shiba.'
 }
 
 describe('reading mixed key value/object list sheets', function () {

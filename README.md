@@ -1,6 +1,6 @@
 # node-copytext [![Build Status](https://travis-ci.org/rdmurphy/node-copytext.svg?branch=master)](https://travis-ci.org/rdmurphy/node-copytext) [![Dependency Status](https://david-dm.org/rdmurphy/node-copytext.svg)](https://david-dm.org/rdmurphy/node-copytext)
 
-A node library for accessing a XLSX spreadsheet as a JavaScript object. (Markdown batteries included!) Inspired by the NPR visuals team's [copytext](https://github.com/nprapps/copytext) library for Python. Works great coupled with group-edited Google Spreadsheet exported as a XLSX file.
+A node library for accessing a XLSX spreadsheet as a JavaScript object. Inspired by the NPR visuals team's [copytext](https://github.com/nprapps/copytext) library for Python. Works great coupled with group-edited Google Spreadsheet exported as a XLSX file.
 
 * [Features](#features)
 * [Requirements](#requirements)
@@ -16,7 +16,6 @@ A node library for accessing a XLSX spreadsheet as a JavaScript object. (Markdow
 - Access an XLSX spreadsheet as a JavaScript object
 - Great for passing into templates, saving to a file, etc.
 - XLSX spreadsheets can be loaded via path or as a [`Buffer`](https://nodejs.org/api/buffer.html)
-- Support for markdown conversion via the [`marked`](https://github.com/chjj/marked) library
 - Can process both **key/value** sheets and **table** layouts
 - Tested against both node.js and io.js
 
@@ -159,23 +158,6 @@ var data = copytext('./husky_keyvalue_corgis_objectlist.xlsx', {
   }
 });
 ```
-
-### Markdown
-
-In **key/value** sheets, you tell `copytext` to process the value cell (in column B) as Markdown by putting `md` or `markdown` in the cell next to it in column C.
-
-- | - | -
------ | ----- | -----
-**name**  | Poky |
-**instagram_account**  | https://instagram.com/poky_corgi/ |
-**bio** | Pembroke Welsh Corgi living in northern \[Ontario, Canada](https://en.wikipedia.org/wiki/Ontario). | markdown
-
-In **table**/**objectlist** sheets, the hint is passed in the header row of the table. By adding `_md` to the end of a column's header label, `copytext` will know to treat everything in that column as Markdown.
-
-name | instagram_account | bio_md
------ | ----- | -----
-Poky | https://instagram.com/poky_corgi/ | Pembroke Welsh Corgi living in northern \[Ontario, Canada](https://en.wikipedia.org/wiki/Ontario).
-Tibby | https://instagram.com/tibbythecorgi/ | Half lion, half corgi. A pinch of bunny.
 
 ## In Practice
 
