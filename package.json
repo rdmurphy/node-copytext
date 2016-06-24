@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/rdmurphy/node-copytext",
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4"
   },
   "dependencies": {
     "marked": "^0.3.5",
