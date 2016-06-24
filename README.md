@@ -22,8 +22,7 @@ A node library for accessing a XLSX spreadsheet as a JavaScript object. Inspired
 
 ## Requirements
 
-- [node.js](https://nodejs.org/) >= 0.10 *or* [io.js](https://iojs.org/en/index.html)
-- [npm](https://www.npmjs.com/)
+- [node.js](https://nodejs.org/) >= 4
 
 ## Installation
 ```sh
