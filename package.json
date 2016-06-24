@@ -9,7 +9,7 @@
     "processors"
   ],
   "scripts": {
-    "test": "mocha"
+    "test": "standard && mocha"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,7 @@
     "xlsx": "^0.8.0"
   },
   "devDependencies": {
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "standard": "^7.1.2"
   }
 }
