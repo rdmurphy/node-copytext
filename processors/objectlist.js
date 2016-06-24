@@ -1,3 +1,5 @@
+'use strict'
+
 const XLSX = require('xlsx')
 
 /**

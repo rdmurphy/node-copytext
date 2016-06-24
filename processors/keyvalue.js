@@ -1,3 +1,5 @@
+'use strict'
+
 /**
  * Converts an Excel spreadsheet into an Object, with each key representing
  * the value in first column, and each value representing the value in the

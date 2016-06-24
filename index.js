@@ -1,3 +1,5 @@
+'use strict'
+
 const processData = require('./process')
 const XLSX = require('xlsx')
 
