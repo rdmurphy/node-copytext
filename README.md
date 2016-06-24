@@ -4,8 +4,8 @@ A node library for accessing a XLSX spreadsheet as a JavaScript object. Inspired
 
 [![build status](https://img.shields.io/travis/rdmurphy/node-copytext/master.svg?style=flat-square)](https://travis-ci.org/rdmurphy/node-copytext)
 [![Coveralls branch](https://img.shields.io/coveralls/rdmurphy/node-copytext/master.svg?style=flat-square)](https://coveralls.io/github/rdmurphy/node-copytext)
-[![npm version](https://img.shields.io/npm/v/node-copytext.svg?style=flat-square)](https://www.npmjs.com/package/node-copytext)
-[![npm](https://img.shields.io/npm/dm/node-copytext.svg?style=flat-square)](https://www.npmjs.com/package/node-copytext)
+[![npm version](https://img.shields.io/npm/v/copytext.svg?style=flat-square)](https://www.npmjs.com/package/copytext)
+[![npm](https://img.shields.io/npm/dm/copytext.svg?style=flat-square)](https://www.npmjs.com/package/copytext)
 
 * [Features](#features)
 * [Requirements](#requirements)
