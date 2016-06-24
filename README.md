@@ -1,6 +1,11 @@
-# node-copytext [![Build Status](https://travis-ci.org/rdmurphy/node-copytext.svg?branch=master)](https://travis-ci.org/rdmurphy/node-copytext) [![Dependency Status](https://david-dm.org/rdmurphy/node-copytext.svg)](https://david-dm.org/rdmurphy/node-copytext)
+# node-copytext
 
 A node library for accessing a XLSX spreadsheet as a JavaScript object. Inspired by the NPR visuals team's [copytext](https://github.com/nprapps/copytext) library for Python. Works great coupled with group-edited Google Spreadsheet exported as a XLSX file.
+
+[![build status](https://img.shields.io/travis/rdmurphy/node-copytext/master.svg?style=flat-square)](https://travis-ci.org/rdmurphy/node-copytext)
+[![Coveralls branch](https://img.shields.io/coveralls/rdmurphy/node-copytext/master.svg?style=flat-square)](https://coveralls.io/github/rdmurphy/node-copytext)
+[![npm version](https://img.shields.io/npm/v/node-copytext.svg?style=flat-square)](https://www.npmjs.com/package/node-copytext)
+[![npm](https://img.shields.io/npm/dm/node-copytext.svg?style=flat-square)](https://www.npmjs.com/package/node-copytext)
 
 * [Features](#features)
 * [Requirements](#requirements)
