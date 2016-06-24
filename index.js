@@ -1,7 +1,43 @@
 'use strict'
 
-const processData = require('./process')
+const keyvalue = require('./processors/keyvalue')
+const objectlist = require('./processors/objectlist')
 const XLSX = require('xlsx')
+
+/**
+ * Object for storing a reference valid processors.
+ *
+ * @private
+ * @type {Object}
+ */
+const processors = {
+  keyvalue,
+  objectlist
+}
+
+/**
+ * Accepts a name and function and makes it available to `copytext` for XLSX
+ * processing.
+ *
+ * @param {String} name
+ * @param {Function} fn
+ */
+function addProcessor (name, fn) {
+  processors[name] = fn
+}
+
+/**
+ * Retrieves a processor by name. Throws an error if it does not exist.
+ *
+ * @private
+ * @param  {String} name
+ * @return {Function}
+ */
+function getProcessor (name) {
+  if (processors.hasOwnProperty(name)) return processors[name]
+
+  throw new Error(`\`${name}\` is not a valid sheet processor.`)
+}
 
 /**
  * Accepts a raw XLSX file and options that determine how `copytext` should
@@ -36,7 +72,7 @@ function process (rawXLSX, options) {
     const processor = overrides.hasOwnProperty(sheet) ? overrides[sheet] : basetype
 
     // pass pass the sheet on to the process script with the correct processor
-    payload[sheet] = processData(workbook.Sheets[sheet], processor)
+    payload[sheet] = getProcessor(processor)(workbook.Sheets[sheet])
   })
 
   // return the processed data
@@ -44,5 +80,6 @@ function process (rawXLSX, options) {
 }
 
 module.exports = {
-  process
+  process,
+  addProcessor
 }
