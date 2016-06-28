@@ -12,7 +12,9 @@
     "docs:build": "documentation readme --readme-file README.md --section 'API Docs' ./index.js && doctoc --github README.md",
     "test": "standard && mocha",
     "test:cov": "istanbul cover ./node_modules/.bin/_mocha",
-    "test:coveralls": "cat ./coverage/lcov.info | coveralls"
+    "test:coveralls": "cat ./coverage/lcov.info | coveralls",
+    "publish-please": "publish-please",
+    "prepublish": "publish-please guard"
   },
   "repository": {
     "type": "git",
@@ -43,6 +45,7 @@
     "istanbul": "^0.4.4",
     "mocha": "^2.2.5",
     "mocha-lcov-reporter": "^1.2.0",
+    "publish-please": "^2.1.4",
     "standard": "^7.1.2"
   }
 }
