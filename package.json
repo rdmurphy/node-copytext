@@ -10,7 +10,9 @@
   ],
   "scripts": {
     "docs:build": "documentation readme --readme-file README.md --section 'API Docs' ./index.js && doctoc --github README.md",
-    "test": "standard && mocha"
+    "test": "standard && mocha",
+    "test:cov": "istanbul cover ./node_modules/.bin/_mocha",
+    "test:coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -35,9 +37,12 @@
     "xlsx": "^0.8.0"
   },
   "devDependencies": {
+    "coveralls": "^2.11.9",
     "doctoc": "^1.2.0",
     "documentation": "^4.0.0-beta5",
+    "istanbul": "^0.4.4",
     "mocha": "^2.2.5",
+    "mocha-lcov-reporter": "^1.2.0",
     "standard": "^7.1.2"
   }
 }

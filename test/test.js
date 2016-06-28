@@ -25,6 +25,18 @@ multiKeyValue.SHIBA = {
   'instagram_account': 'https://instagram.com/marutaro/'
 }
 
+describe('processor options', function () {
+  it('should throw an error when unavailable processor is passed', function () {
+    const input = function () {
+      copytext.process('./test/files/basic_keyvalue.xlsx', {
+        processor: 'i-do-not-exist'
+      })
+    }
+
+    assert.throws(input, (e) => e instanceof Error && /is not a valid sheet processor/.test(e))
+  })
+})
+
 describe('file loading methods', function () {
   it('should load as a Buffer', function () {
     const file = fs.readFileSync('./test/files/basic_keyvalue.xlsx')
