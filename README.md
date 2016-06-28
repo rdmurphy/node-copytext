@@ -59,10 +59,10 @@ _Note: With **key/value** sheets, the processor will only care about content in 
 **corgis_keyvalue.xlsx**  
 _Sheet name: CORGIS_
 
--   \| -
-    \----- \| -----
-    **name** | Poky
-    **instagram_account** \| <https://instagram.com/poky_corgi/>
+| -                     |  -                                     |
+| ----------------------|----------------------------------------|
+| **name**              | Poky                                   |
+| **instagram_account** | <https://instagram.com/tibbythecorgi/> |
 
 ```js
 var copytext = require('copytext');
