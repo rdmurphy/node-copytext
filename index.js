@@ -113,7 +113,7 @@ function validateOptions (options) {
 
     overrides.forEach((override) => {
       if (options.excludeSheets.indexOf(override) !== -1) {
-        console.warn(`\`${override}\` has an override, but it is also being excluded in \`excludedSheets\`.`)
+        console.warn(`\`${override}\` has an override, but it is also being excluded in \`excludeSheets\`.`)
       }
     })
   }

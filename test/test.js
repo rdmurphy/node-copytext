@@ -151,7 +151,7 @@ describe('reading mixed key value/table sheets', function () {
 })
 
 describe('including/excluding sheets in a file', function () {
-  it('should throw an error if both `includeSheets` and `excludedSheets` are used', function () {
+  it('should throw an error if both `includeSheets` and `excludeSheets` are used', function () {
     const input = () => {
       copytext.process('./test/files/multi_keyvalue.xlsx', {
         includeSheets: ['CORGI'],
