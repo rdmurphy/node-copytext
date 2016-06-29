@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.0
+
+- Add support for `includeSheets` and `excludeSheets` options on `copytext.process`
+
 ## 2.0.0
 
 - Remove `marked` dependency and Markdown support
