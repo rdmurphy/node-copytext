@@ -115,10 +115,10 @@ Assume we have the previous example's `CORGIS` sheet in a spreadsheet plus this 
 
 _Sheet name: SHIBA_
 
--   \| -
-    \----- \| -----
-    **name** | Maru
-    **instagram_account** \| <https://instagram.com/marutaro/>
+| -                     | -                                      |
+| --------------------- | -------------------------------------- |
+| **name**              | Maru                                   |
+| **instagram_account** | <https://instagram.com/marutaro/>      |
 
 ```js
 var copytext = require('copytext');
