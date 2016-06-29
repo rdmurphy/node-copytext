@@ -149,3 +149,43 @@ describe('reading mixed key value/table sheets', function () {
     }), mixedKeyValueTable)
   })
 })
+
+describe('including/excluding sheets in a file', function () {
+  it('should throw an error if both `includeSheets` and `excludedSheets` are used', function () {
+    const input = () => {
+      copytext.process('./test/files/multi_keyvalue.xlsx', {
+        includeSheets: ['CORGI'],
+        excludeSheets: ['SHIBA']
+      }, basicKeyValue)
+    }
+
+    assert.throws(input, (e) => e instanceof Error && /Do not pass both `includeSheets` and `excludeSheets`/.test(e))
+  })
+
+  it('should only include sheets listed in `includeSheets` when passed', function () {
+    assert.deepEqual(copytext.process('./test/files/multi_keyvalue.xlsx', {
+      includeSheets: ['CORGI']
+    }), basicKeyValue)
+  })
+
+  it('should only include sheet listed in `includeSheets` when passed as single value', function () {
+    assert.deepEqual(copytext.process('./test/files/multi_keyvalue.xlsx', {
+      includeSheets: 'CORGI'
+    }), basicKeyValue)
+  })
+
+  it('should only exclude sheets listed in `excludeSheets` when passed', function () {
+    assert.deepEqual(copytext.process('./test/files/multi_keyvalue.xlsx', {
+      excludeSheets: ['SHIBA'],
+      overrides: {
+        'SHIBA': 'table'
+      }
+    }), basicKeyValue)
+  })
+
+  it('should only exclude sheet listed in `excludeSheets` when passed as single value', function () {
+    assert.deepEqual(copytext.process('./test/files/multi_keyvalue.xlsx', {
+      excludeSheets: 'SHIBA'
+    }), basicKeyValue)
+  })
+})

@@ -40,6 +40,9 @@ function process (rawXLSX, options) {
   // if no options are passed, set an empty Object as default
   options = options || {}
 
+  // check for errors in the options, and clean up if needed
+  options = validateOptions(options)
+
   // if no processor is set, assume `keyvalue`
   const defaultProcessor = options.processor || 'keyvalue'
 
@@ -50,7 +53,15 @@ function process (rawXLSX, options) {
   const workbook = rawXLSX instanceof Buffer ? XLSX.read(rawXLSX, {type: 'buffer'}) : XLSX.readFile(rawXLSX)
 
   // get the names of all the sheets in an Array
-  const sheets = workbook.SheetNames
+  let sheets = workbook.SheetNames
+
+  if (options.includeSheets) {
+    sheets = sheets.filter((s) => options.includeSheets.indexOf(s) !== -1)
+  }
+
+  if (options.excludeSheets) {
+    sheets = sheets.filter((s) => options.excludeSheets.indexOf(s) === -1)
+  }
 
   // the eventual payload returned to the callback
   let payload = {}
@@ -66,6 +77,44 @@ function process (rawXLSX, options) {
 
   // return the processed data
   return payload
+}
+
+/**
+ * Validates and normalizes the options passed to `process`.
+ *
+ * @private
+ * @param  {Object} options
+ * @return {Object}
+ */
+function validateOptions (options) {
+  // doesn't make sense to pass both, so prevent it
+  if (options.includeSheets && options.excludeSheets) {
+    throw new Error("Do not pass both `includeSheets` and `excludeSheets`. It's confusing.")
+  }
+
+  // if `includeSheets` exists and isn't an Array, make it so
+  if (options.includeSheets) {
+    if (!Array.isArray(options.includeSheets)) options.includeSheets = [options.includeSheets]
+  }
+
+  // if `excludeSheets` exists and isn't an Array, make it so
+  if (options.excludeSheets) {
+    if (!Array.isArray(options.excludeSheets)) options.excludeSheets = [options.excludeSheets]
+  }
+
+  // if `excludeSheets` is set and one of them show up in `overrides`, it won't
+  // break anything, but the user should be aware it won't work
+  if (options.excludeSheets && options.overrides) {
+    const overrides = Object.keys(options.overrides)
+
+    overrides.forEach((override) => {
+      if (options.excludeSheets.indexOf(override) !== -1) {
+        console.warn(`\`${override}\` has an override, but it is also being excluded in \`excludedSheets\`.`)
+      }
+    })
+  }
+
+  return options
 }
 
 module.exports = {
