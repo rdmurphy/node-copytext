@@ -34,6 +34,10 @@ function getProcessor (name) {
  *
  * @param  {String|Buffer} rawXLSX A Buffer of, or path to, an XLSX file
  * @param  {Object} [options]
+ * @param  {String} [options.processor='keyvalue'] The processor used on all sheets without overrides
+ * @param  {String[]|String} [options.includeSheets=undefined] Sheets to include
+ * @param  {String[]|String} [options.excludeSheets=undefined] Sheets to exclude
+ * @param  {Object} [options.overrides=undefined] Key value pairs of the sheet name and processor that should be used
  * @return {Object}
  */
 function process (rawXLSX, options) {

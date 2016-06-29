@@ -59,8 +59,8 @@ _Note: With **key/value** sheets, the processor will only care about content in 
 **corgis_keyvalue.xlsx**  
 _Sheet name: CORGIS_
 
-| -                     |  -                                     |
-| ----------------------|----------------------------------------|
+| -                     | -                                      |
+| --------------------- | -------------------------------------- |
 | **name**              | Poky                                   |
 | **instagram_account** | <https://instagram.com/tibbythecorgi/> |
 
@@ -148,7 +148,7 @@ console.log(data);
 // }
 ```
 
-The override works in both directions &mdash; this would have produced the same result:
+The override works in both directions — this would have produced the same result:
 
 ```js
 var data = copytext.process('./husky_keyvalue_corgis_table.xlsx', {
@@ -156,6 +156,26 @@ var data = copytext.process('./husky_keyvalue_corgis_table.xlsx', {
   'overrides': {
     'CORGIS': 'table'
   }
+});
+```
+
+It's also possible to include or exclude entire sheets. This is useful if you only want one sheet to be converted (for example, the other sheets may be supplying data to the master sheet), or want to exclude certain sheets.
+
+```js
+var copytext = require('copytext');
+
+var data = copytext.process('./husky_keyvalue_corgis_table.xlsx', {
+  'processor': 'table',
+  'includeSheets': ['CORGI']
+});
+```
+
+```js
+var copytext = require('copytext');
+
+var data = copytext.process('./husky_keyvalue_corgis_table.xlsx', {
+  'processor': 'table',
+  'excludeSheets': ['HUSKY']
 });
 ```
 
@@ -204,9 +224,13 @@ process it.
 **Parameters**
 
 -   `rawXLSX` **([String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** A Buffer of, or path to, an XLSX file
--   `options` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]**
+-   `options` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** 
+    -   `options.processor` **\[[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)]** The processor used on all sheets without overrides (optional, default `'keyvalue'`)
+    -   `options.includeSheets` **\[([Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)> | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String))]** Sheets to include (optional, default `undefined`)
+    -   `options.excludeSheets` **\[([Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)> | [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String))]** Sheets to exclude (optional, default `undefined`)
+    -   `options.overrides` **\[[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)]** Key value pairs of the sheet name and processor that should be used (optional, default `undefined`)
 
-Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)**
+Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 ## License
 
