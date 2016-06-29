@@ -176,10 +176,7 @@ describe('including/excluding sheets in a file', function () {
 
   it('should only exclude sheets listed in `excludeSheets` when passed', function () {
     assert.deepEqual(copytext.process('./test/files/multi_keyvalue.xlsx', {
-      excludeSheets: ['SHIBA'],
-      overrides: {
-        'SHIBA': 'table'
-      }
+      excludeSheets: ['SHIBA']
     }), basicKeyValue)
   })
 
