@@ -185,4 +185,13 @@ describe('including/excluding sheets in a file', function () {
       excludeSheets: 'SHIBA'
     }), basicKeyValue)
   })
+
+  it('should still exclude sheets listed in `excludeSheets` when passed, even if an override is also passed', function () {
+    assert.deepEqual(copytext.process('./test/files/multi_keyvalue.xlsx', {
+      excludeSheets: ['SHIBA'],
+      overrides: {
+        'SHIBA': 'table'
+      }
+    }), basicKeyValue)
+  })
 })
