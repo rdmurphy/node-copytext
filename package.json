@@ -45,6 +45,6 @@
     "mocha": "^3.0.1",
     "mocha-lcov-reporter": "^1.2.0",
     "publish-please": "^2.1.4",
-    "standard": "^7.1.2"
+    "standard": "^8.1.0"
   }
 }
