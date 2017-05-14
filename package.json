@@ -42,7 +42,7 @@
     "doctoc": "^1.2.0",
     "documentation": "^4.0.0-beta5",
     "istanbul": "^0.4.4",
-    "mocha": "^3.0.1",
+    "mocha": "^3.4.0",
     "mocha-lcov-reporter": "^1.2.0",
     "publish-please": "^2.1.4",
     "standard": "^8.1.0"
