@@ -8,11 +8,12 @@
     "processors"
   ],
   "scripts": {
+    "build": "NODE_ENV=production typebundle src/index.ts --output dist --target 8 --compress",
     "docs:build": "documentation readme --readme-file README.md --section 'API Docs' ./index.js && doctoc --github README.md",
     "release": "np --no-yarn",
-    "test": "mocha",
-    "test:cov": "nyc --reporter=html --reporter=text mocha",
-    "test:coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "test": "NODE_ENV=test mocha --require test/setup.js test/test.js",
+    "test:cov": "NODE_ENV=test nyc --reporter lcov --reporter text --extension ts --require ./test/setup.js mocha test/test.js",
+    "test:coveralls": "NODE_ENV=test nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -37,8 +38,13 @@
     "xlsx": "^0.15.1"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-typescript": "^7.3.3",
+    "@babel/register": "^7.5.5",
     "@newswire/prettier-config": "^2.0.0",
+    "@types/node": "^12.7.2",
     "@zeit/git-hooks": "^0.1.4",
+    "babel-plugin-istanbul": "^5.2.0",
     "coveralls": "^3.0.6",
     "doctoc": "^1.2.0",
     "documentation": "^12.1.1",
@@ -46,7 +52,8 @@
     "mocha-lcov-reporter": "^1.2.0",
     "np": "^5.0.3",
     "nyc": "^14.1.1",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "typebundle": "^0.5.0"
   },
   "prettier": "@newswire/prettier-config"
 }
