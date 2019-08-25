@@ -239,6 +239,8 @@ process it.
     -   `options.processor`  The processor used on all sheets without overrides (optional, default `'keyvalue'`)
     -   `options.overrides`  Key-value pairs of the sheet name and processor that should be used (optional, default `{}`)
 
+Returns **ProcessResults** 
+
 ## License
 
 By [Ryan Murphy](https://twitter.com/rdmurphy).

@@ -46,7 +46,7 @@ export function process(
     processor = 'keyvalue',
     overrides = {},
   }: ProcessOptions = {}
-) {
+): ProcessResults {
   const workbook = Buffer.isBuffer(file)
     ? XLSX.read(file, { type: 'buffer' })
     : XLSX.readFile(file);
