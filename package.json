@@ -9,11 +9,10 @@
   ],
   "scripts": {
     "docs:build": "documentation readme --readme-file README.md --section 'API Docs' ./index.js && doctoc --github README.md",
-    "test": "standard && mocha",
-    "test:cov": "istanbul cover ./node_modules/.bin/_mocha",
-    "test:coveralls": "cat ./coverage/lcov.info | coveralls",
-    "publish-please": "publish-please",
-    "prepublish": "publish-please guard"
+    "release": "np --no-yarn",
+    "test": "mocha",
+    "test:cov": "nyc --reporter=html --reporter=text mocha",
+    "test:coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -32,19 +31,22 @@
   },
   "homepage": "https://github.com/rdmurphy/node-copytext",
   "engines": {
-    "node": ">=4"
+    "node": ">=8"
   },
   "dependencies": {
     "xlsx": "^0.8.0"
   },
   "devDependencies": {
-    "coveralls": "^2.11.9",
+    "@newswire/prettier-config": "^2.0.0",
+    "@zeit/git-hooks": "^0.1.4",
+    "coveralls": "^3.0.6",
     "doctoc": "^1.2.0",
-    "documentation": "^4.0.0-beta5",
-    "istanbul": "^0.4.4",
-    "mocha": "^3.0.1",
+    "documentation": "^12.1.1",
+    "mocha": "^6.2.0",
     "mocha-lcov-reporter": "^1.2.0",
-    "publish-please": "^2.1.4",
-    "standard": "^8.1.0"
-  }
+    "np": "^5.0.3",
+    "nyc": "^14.1.1",
+    "prettier": "^1.18.2"
+  },
+  "prettier": "@newswire/prettier-config"
 }
