@@ -9,6 +9,7 @@ const processors = { keyvalue, table } as { [key: string]: Function };
 /**
  * Retrieves a processor by name. Throws an error if it does not exist.
  *
+ * @private
  * @param name The name of the processor
  */
 function getProcessor(name: string) {
@@ -26,6 +27,17 @@ export interface ProcessOptions {
 
 export type ProcessResults = { [sheetName: string]: unknown };
 
+/**
+ * Accepts a raw XLSX file and options that determine how `copytext` should
+ * process it.
+ *
+ * @param file A Buffer of, or path to, an XLSX file
+ * @param options
+ * @param options.include A list of sheets to include, or a Function that receives each sheet's name and returns a Boolean
+ * @param options.exclude A list of sheets to exclude, or a Function that receives each sheet's name and returns a Boolean
+ * @param options.processor The processor used on all sheets without overrides
+ * @param options.overrides Key-value pairs of the sheet name and processor that should be used
+ */
 export function process(
   file: string | Buffer,
   {

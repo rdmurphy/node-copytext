@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "NODE_ENV=production typebundle src/index.ts --output dist --target 8 --compress",
-    "docs:build": "documentation readme --readme-file README.md --section 'API Docs' ./index.js && doctoc --github README.md",
+    "docs:build": "documentation readme src/index.ts --parse-extension ts --readme-file README.md --section 'API Docs' --markdown-toc && doctoc --github README.md",
     "release": "np --no-yarn",
     "test": "NODE_ENV=test mocha --require test/setup.js test/test.js",
     "test:cov": "NODE_ENV=test nyc --extension ts --require ./test/setup.js mocha test/test.js",

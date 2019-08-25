@@ -33,7 +33,7 @@ A node library for accessing a XLSX spreadsheet as a JavaScript object. Inspired
 
 ## Requirements
 
--   [node.js](https://nodejs.org/) >= 4
+-   [node.js](https://nodejs.org/) >= 8
 
 ## Installation
 
@@ -95,7 +95,7 @@ _Sheet name: CORGIS_
 var copytext = require('copytext');
 
 var data = copytext.process('./corgis_table.xlsx', {
-  'processor': 'table'
+  processor: 'table',
 });
 
 console.log(data);
@@ -126,10 +126,10 @@ _Sheet name: SHIBA_
 var copytext = require('copytext');
 
 var data = copytext.process('./husky_keyvalue_corgis_table.xlsx', {
-  'processor': 'table',
-  'overrides': {
-    'SHIBA': 'keyvalue'
-  }
+  processor: 'table',
+  overrides: {
+    SHIBA: 'keyvalue',
+  },
 });
 
 console.log(data);
@@ -154,10 +154,10 @@ The override works in both directions — this would have produced the same resu
 
 ```js
 var data = copytext.process('./husky_keyvalue_corgis_table.xlsx', {
-  'processor': 'keyvalue',
-  'overrides': {
-    'CORGIS': 'table'
-  }
+  processor: 'keyvalue',
+  overrides: {
+    CORGIS: 'table',
+  },
 });
 ```
 
@@ -167,8 +167,8 @@ It's also possible to include or exclude entire sheets. This is useful if you on
 var copytext = require('copytext');
 
 var data = copytext.process('./husky_keyvalue_corgis_table.xlsx', {
-  'processor': 'table',
-  'includeSheets': ['CORGI']
+  processor: 'table',
+  include: ['CORGI'],
 });
 ```
 
@@ -176,8 +176,8 @@ var data = copytext.process('./husky_keyvalue_corgis_table.xlsx', {
 var copytext = require('copytext');
 
 var data = copytext.process('./husky_keyvalue_corgis_table.xlsx', {
-  'processor': 'table',
-  'excludeSheets': ['HUSKY']
+  processor: 'table',
+  exclude: ['HUSKY'],
 });
 ```
 
@@ -190,8 +190,8 @@ var fs = require('fs');
 var copytext = require('copytext');
 var nunjucks = require('nunjucks');
 
-var data = copytext.process('./data/contacts.xlsx');  // a key/value sheet named CONTACTS
-var res = nunjucks.render('index.html', {DATA: data});
+var data = copytext.process('./data/contacts.xlsx'); // a key/value sheet named CONTACTS
+var res = nunjucks.render('index.html', { DATA: data });
 ```
 
 **index.html**
@@ -232,14 +232,12 @@ process it.
 
 #### Parameters
 
--   `rawXLSX` **([String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** A Buffer of, or path to, an XLSX file
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** 
-    -   `options.processor` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The processor used on all sheets without overrides (optional, default `'keyvalue'`)
-    -   `options.includeSheets` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Sheets to include (optional, default `undefined`)
-    -   `options.excludeSheets` **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)> | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Sheets to exclude (optional, default `undefined`)
-    -   `options.overrides` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Key value pairs of the sheet name and processor that should be used (optional, default `undefined`)
-
-Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+-   `file` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** A Buffer of, or path to, an XLSX file
+-   `options` **ProcessOptions**  (optional, default `{}`)
+    -   `options.include`  A list of sheets to include, or a Function that receives each sheet's name and returns a Boolean
+    -   `options.exclude`  A list of sheets to exclude, or a Function that receives each sheet's name and returns a Boolean
+    -   `options.processor`  The processor used on all sheets without overrides (optional, default `'keyvalue'`)
+    -   `options.overrides`  Key-value pairs of the sheet name and processor that should be used (optional, default `{}`)
 
 ## License
 
