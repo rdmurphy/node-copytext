@@ -34,7 +34,7 @@
     "node": ">=8"
   },
   "dependencies": {
-    "xlsx": "^0.8.0"
+    "xlsx": "^0.15.1"
   },
   "devDependencies": {
     "@newswire/prettier-config": "^2.0.0",
