@@ -18,8 +18,8 @@ function getProcessor(name: string) {
 }
 
 export interface ProcessOptions {
-  include?: string[];
-  exclude?: string[];
+  include?: string[] | Function;
+  exclude?: string[] | Function;
   processor?: string;
   overrides?: { [sheetName: string]: 'keyvalue' | 'table' };
 }
@@ -42,11 +42,17 @@ export function process(
   let sheetNames = workbook.SheetNames;
 
   if (include) {
-    sheetNames = sheetNames.filter(name => include.includes(name));
+    const includeFn = Array.isArray(include)
+      ? (name: string) => include.includes(name)
+      : (include as (value: string) => boolean);
+    sheetNames = sheetNames.filter(includeFn);
   }
 
   if (exclude) {
-    sheetNames = sheetNames.filter(name => !exclude.includes(name));
+    const excludeFn = Array.isArray(exclude)
+      ? (name: string) => !exclude.includes(name)
+      : (exclude as (value: string) => boolean);
+    sheetNames = sheetNames.filter(excludeFn);
   }
 
   const results = {} as ProcessResults;

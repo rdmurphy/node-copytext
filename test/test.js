@@ -209,10 +209,10 @@ describe('including/excluding sheets in a file', function() {
     );
   });
 
-  it('should only include sheet listed in `include` when passed as single value', function() {
+  it('should be able to accept a custom `include` function for filtering', function() {
     assert.deepEqual(
       process('./test/files/multi_keyvalue.xlsx', {
-        include: 'CORGI',
+        include: name => name === 'CORGI',
       }),
       basicKeyValue
     );
@@ -227,10 +227,10 @@ describe('including/excluding sheets in a file', function() {
     );
   });
 
-  it('should only exclude sheet listed in `exclude` when passed as single value', function() {
+  it('should be able to accept a custom `exclude` function for filtering', function() {
     assert.deepEqual(
       process('./test/files/multi_keyvalue.xlsx', {
-        exclude: 'SHIBA',
+        exclude: name => name !== 'SHIBA',
       }),
       basicKeyValue
     );
